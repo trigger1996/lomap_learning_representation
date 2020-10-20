@@ -16,6 +16,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
 import networkx as nx
+import matplotlib.pyplot as plt
 
 # TODO: always use safe load
 from yaml import load, dump #, safe_load as load
@@ -87,7 +88,7 @@ class Model(object):
     def size(self):
         return (self.g.number_of_nodes(), self.g.number_of_edges())
 
-    def visualize(self, edgelabel=None, draw='pygraphviz'):
+    def visualize(self, edgelabel=None, draw='matplotlib'):
         """
         Visualizes a LOMAP system model
         """
@@ -97,6 +98,8 @@ class Model(object):
             pos = nx.spring_layout(self.g)
             nx.draw(self.g, pos=pos)
             nx.draw_networkx_labels(self.g, pos=pos)
+
+            plt.show()
         else:
             raise ValueError('Expected parameter draw to be either:'
                              + '"pygraphviz" or "matplotlib"!')

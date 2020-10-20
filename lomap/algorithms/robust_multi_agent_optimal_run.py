@@ -62,6 +62,10 @@ def robust_multi_agent_optimal_run(ts_tuple, rhos, formula, opt_prop):
     with Timer('Path Planning'):
         # Construct the team_ts
         team_ts = ts_times_ts(ts_tuple)
+
+        # Visualize team_ts
+        #team_ts.visualize()
+
         # Find the optimal run and shortest prefix on team_ts
         try:
             prefix_length, prefix_on_team_ts, suffix_cycle_cost, \
@@ -87,7 +91,7 @@ def robust_multi_agent_optimal_run(ts_tuple, rhos, formula, opt_prop):
         b = Buchi()
         neg_formula = '! ({})'.format(formula)
         b.from_formula(neg_formula)
-        #b.visualize()
+        b.visualize()
 
     # Compute synchronization sequences
     with Timer('Sync Seq computation'):

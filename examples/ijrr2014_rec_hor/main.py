@@ -124,7 +124,7 @@ case_studies = {
 		}
 
 # Select the case-study to run
-case = 'case2'
+case = 'case1'	# case2
 
 # Set the mission specification
 global_spec, local_spec, prio, init_x, init_y, sensing_range = case_studies[case]

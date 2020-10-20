@@ -88,7 +88,7 @@ def set_props_3(mdp):
 def case_1():
 
     # Read the vehicle model
-    vehicle = lomap.Ts.load('./vehicle_1.yaml')
+    vehicle = lomap.Ts.load('./examples/ijrr2014_inc_syn/vehicle_1.yaml')
     # Convert the vehicle model to an MDP
     vehicle_mdp = lomap.Markov()
     vehicle_mdp.mdp_from_det_ts(vehicle)
@@ -96,7 +96,7 @@ def case_1():
     # Read the models of the pedestrians
     targets = []
     for i in range(1,6):
-        t = lomap.Markov.load('./target_{}.yaml'.format(i))
+        t = lomap.Markov.load('./examples/ijrr2014_inc_syn/target_{}.yaml'.format(i))
         targets.append(t)
 
     formula = '! col U end'

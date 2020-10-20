@@ -21,6 +21,7 @@ import networkx as nx
 
 from lomap.classes.model import Model
 
+import matplotlib.pyplot as plt
 
 class Ts(Model): #TODO: make independent of graph type
     """
@@ -73,7 +74,7 @@ class Ts(Model): #TODO: make independent of graph type
             return tuple(r)
 
     def visualize(self, edgelabel='control', current_node=None,
-                  draw='pygraphviz'):
+                  draw='matplotlib'):
         """
         Visualizes a LOMAP system model.
         """
@@ -95,8 +96,18 @@ class Ts(Model): #TODO: make independent of graph type
             nx.draw(self.g, pos=pos, node_color=colors)
             nx.draw_networkx_labels(self.g, pos=pos)
             edge_labels = nx.get_edge_attributes(self.g, edgelabel)
+
+            #
+            edge_labels_to_draw = []
+            for (n1, n2) in edge_labels.items():
+                edge_labels_to_draw.append(((n1[0], n1[1]), n2))
+            edge_labels_to_draw = dict(edge_labels_to_draw)
+
             nx.draw_networkx_edge_labels(self.g, pos=pos,
-                                         edge_labels=edge_labels)
+                                         edge_labels=edge_labels_to_draw)   # edge_labels
+
+            plt.show()
+
         else:
             raise ValueError('Expected parameter draw to be either:'
                              + '"pygraphviz" or "matplotlib"!')
